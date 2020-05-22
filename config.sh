@@ -19,19 +19,19 @@ setup_color() {
 }
 
 # Install and update general dependencies for new VMs
-echo "${BLUE} Getting updates from ubuntu...${RESET}"
+echo "${BLUE}     Getting updates from ubuntu...${RESET}"
 sudo apt-get update
-echo "${GREEN} Dependencies updated!${RESET}"
+echo "${GREEN}    Dependencies updated!${RESET}"
 
 # Verifying installation of Git
-echo "${BLUE} Verifying Git package${RESET}"
+echo "${BLUE}     Verifying Git package${RESET}"
 if [ ! -x /usr/bin/git ];
 then
 	sudo apt-get install git -y
 else
 	sudo apt-get upgrade git -y
 fi
-echo "${GREEN}Git installed and updated${RESET}"
+echo "${GREEN}    Git installed and updated${RESET}"
 
 # Clone and execute Betty install
 echo "${BLUE}Cloning into Betty code style...${RESET}"
@@ -42,10 +42,10 @@ fi
 
 sudo /home/vagrant/Betty/install.sh
 
-echo "${GREEN}Betty C code style is set!${RESET}"
+echo "${GREEN}     Betty C code style is set!${RESET}"
 
 # Install OhMyZsh
-echo "${BLUE}Installing OhMyZsh${RESET}"
+echo "${BLUE}     Installing OhMyZsh${RESET}"
 if [ ! -x /usr/bin/zsh ];
 then
 	sudo apt-get install zsh -y
@@ -54,7 +54,7 @@ then
 fi
 
 # Install pip3 and pycodestyle
-echo "${BLUE}Getting pip and Python style${RESET}"
+echo "${BLUE}     Getting pip and Python style${RESET}"
 if [ ! -x /usr/bin/pip3 ];
 then
 	sudo apt-get install python3-pip -y
@@ -68,10 +68,10 @@ then
 	sudo pip3 install pycodestyle
 fi
 
-echo "${GREEN} Pip and Pycode installed${RESET}"
+echo "${GREEN}     Pip and Pycode installed${RESET}"
 
 # Install emacs and configure it
-echo "${BLUE}Instaling and configuring emacs${RESET}"
+echo "${BLUE}     Instaling and configuring emacs${RESET}"
 if [ ! -f ~/.emacs ];
 then
 	touch ~/.emacs
@@ -92,13 +92,13 @@ then
 	;; set line numbers
 	(global-linum-mode 1) ; always show line numbers" >> ~/.emacs
 fi
-echo "${GREEN}Ready to write code${RESET}"
+echo "${GREEN}     Ready to write code${RESET}"
 
 # Set aliases for gcc, install, update, clear and remove
-echo "${BLUE}Changing OhMyZsh Theme${RESET}"
+echo "${BLUE}     Changing OhMyZsh Theme${RESET}"
 sudo sed -i '/^ZSH_THEME=/cZSH_THEME="xiong-chiamiov-plus"' ~/.zshrc
 
-echo "${BLUE}Setting aliases${RESET}"
+echo "${BLUE}     Setting aliases${RESET}"
 echo "alias ins=\"sudo apt-get install\"" >> ~/.zshrc
 echo "alias gcc=\"gcc Wall -Werror -Wextra -pedantic\"" >> ~/.zshrc
 echo "alias purge=\"sudo apt-get autoremove\"" >> ~/.zshrc
@@ -108,13 +108,29 @@ echo "alias update=\"sudo apt-get update\"" >> ~/.zshrc
 # Set zsh by default
 if [ -x /usr/bin/zsh ];
 then
-	echo "${BLUE}Change the default shell to zsh${RESET}"
+	echo "${BLUE}     Change the default shell to zsh${RESET}"
 	sudo chsh -s /usr/bin/zsh
 fi
-echo "${GREEN}Done!${RESET}"
+echo "${GREEN}     Done!${RESET}"
 
 # Setting Time Zone. It will be updated to get a user location input
 sudo timedatectl set-timezone America/Bogota
+
+# Cleaning
+rm ~/install.sh
+
+# Taking user input for configure GitHub
+echo "Set up GitHub username and email:"
+read -p 'Could you tell me What is your GitHub e-mail?: ' email
+read -p 'Now, Could you tell me your GitHub Username?: ' username
+echo "Setting up your GitHub configuration..."
+
+git config --global user.email "$email"
+git config --global user.name "$username"
+git config --global credential.helper 'cache --timeout=99999999'
+
+echo "If your username or email was incorrect you can run manually the commands git config --global user.email [Your email] and
+git config --global user.name [Your Name]. A future implementation will let you correct if it's the case"
 
 # Settings finished
 zsh
