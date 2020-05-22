@@ -14,7 +14,6 @@ This script install and configure the Vm like this:
 ![xiong-chiamov theme](./xiong-chiamiov-plus.PNG "Loaded theme for OhMyZsh(By now)")
 6. Install pip3 and pycodestyle
 7. Setting up some interesting aliases:
-
 | Name | Original command
 | - |:-:
 | ins | sudo apt-get install
@@ -22,8 +21,7 @@ This script install and configure the Vm like this:
 | purge | sudo apt-get autoremove
 | cl | clear
 | update | sudo apt-get update
-
-8. "Tell me who you are?" from git is now configured. Close to the end of the config, a terminal form will appear to customize your  GitHub Username and Email. Also, setup a rule to save  the credentials for many time
+8. "Tell me who you are?" from git is now configured. At the beginning of the configuration, a terminal form will appear to customize your GitHub Username and Email. Also, setup a rule to save the credentials for many time
 
 ## Future (Not so far) modifications
 

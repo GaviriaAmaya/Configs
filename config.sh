@@ -18,6 +18,16 @@ setup_color() {
 	fi
 }
 
+setup_color()
+
+# Taking user input for configure GitHub
+echo "Set up GitHub username and email:"
+read -p 'Could you tell me What is your GitHub e-mail?: ' email
+read -p 'Now, Could you tell me your GitHub Username?: ' username
+
+echo "If your username or email was incorrect you can run manually the commands git config --global user.email [Your email] and
+git config --global user.name [Your Name]. A future implementation will let you correct if it's the case"
+
 # Install and update general dependencies for new VMs
 echo "${BLUE}     Getting updates from ubuntu...${RESET}"
 sudo apt-get update
@@ -33,8 +43,14 @@ else
 fi
 echo "${GREEN}    Git installed and updated${RESET}"
 
+echo "Setting up your GitHub configuration..."
+
+git config --global user.email "$email"
+git config --global user.name "$username"
+git config --global credential.helper 'cache --timeout=99999999'
+
 # Clone and execute Betty install
-echo "${BLUE}Cloning into Betty code style...${RESET}"
+echo "${BLUE}     Cloning into Betty code style...${RESET}"
 if [ ! -d "/home/vagrant/Betty" ];
 then
 	git clone https://github.com/holbertonschool/Betty.git
@@ -118,19 +134,6 @@ sudo timedatectl set-timezone America/Bogota
 
 # Cleaning
 rm ~/install.sh
-
-# Taking user input for configure GitHub
-echo "Set up GitHub username and email:"
-read -p 'Could you tell me What is your GitHub e-mail?: ' email
-read -p 'Now, Could you tell me your GitHub Username?: ' username
-echo "Setting up your GitHub configuration..."
-
-git config --global user.email "$email"
-git config --global user.name "$username"
-git config --global credential.helper 'cache --timeout=99999999'
-
-echo "If your username or email was incorrect you can run manually the commands git config --global user.email [Your email] and
-git config --global user.name [Your Name]. A future implementation will let you correct if it's the case"
 
 # Settings finished
 zsh
