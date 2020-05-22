@@ -27,3 +27,5 @@ First, you can download this:
 
 Then, run the bash script:
 `./config.sh`
+
+Dedicated to Mariana and four kittens
