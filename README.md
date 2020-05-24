@@ -8,10 +8,10 @@ This script install and configure the Vm like this:
 
 1. Update dependencies
 2. Install or update git
-3. Install emacs and configure an .emacs file at home directory with some presets
+3. Install emacs and configure an .emacs file at home directory with some presets. Also, configured vim with some cool presets too
 4. Install Betty, a C programming styleguide based on Linux Kernel and C90
 5. Install OhMyZsh and configure xiong-chiamiov-plus theme\
-![xiong-chiamov theme](./xiong-chiamiov-plus.PNG "Loaded theme for OhMyZsh(By now)")
+![xiong-chiamov theme](./img/xiong-chiamiov-plus.PNG "Loaded theme for OhMyZsh(By now)")
 6. Install pip3 and pycodestyle
 7. Setting up some interesting aliases:
 | Name | Original command
@@ -31,7 +31,7 @@ This script install and configure the Vm like this:
 - Bootstrap and other stuff
 - ~~Set the Git mail and name globally, through input~~
 - Add options to OhMyZsh Themes
-- Install and configure Vim (Even can be added an option to install emacs, vim or both)
+- ~~Install and configure Vim (Even can be added an option to install emacs, vim or both)~~
 - Implement timezone from the user
 
 ## Implementation
