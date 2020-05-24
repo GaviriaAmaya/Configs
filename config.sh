@@ -120,25 +120,29 @@ git config --global user.name "$username"
 git config --global credential.helper 'cache --timeout=99999999'
 
 # Clone and execute Betty install
-echo "${BLUE}Cloning into Betty code style...${RESET}"
 if [ ! -d "/home/vagrant/Betty" ];
 then
+	echo "${BLUE}Cloning into Betty code style...${RESET}"
 	git clone https://github.com/holbertonschool/Betty.git
+	sudo /home/vagrant/Betty/install.sh
+	echo "${GREEN}Betty C code style is set!${RESET}"
 fi
 
-sudo /home/vagrant/Betty/install.sh
-
-echo "${GREEN}Betty C code style is set!${RESET}"
-
 # Install OhMyZsh
-echo "${BLUE}Installing OhMyZsh${RESET}"
 if [ ! -x /usr/bin/zsh ];
 then
 	sudo apt-get install zsh -y
+fi
+
+if [ ! -d ~/.oh-my-zsh ];
+then
+	echo "${BLUE}Installing OhMyZsh${RESET}"
 	wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	sh install.sh --unattended
+	rm ~/install.sh
+	echo "${GREEN}OhMyZsh is installed!${RESET}"
 fi
-echo "${GREEN}OhMyZsh is installed!${RESET}"
+
 
 # Install pip3 and pycodestyle
 echo "${BLUE}Getting pip and Python style${RESET}"
@@ -177,9 +181,6 @@ echo "${GREEN}Done!${RESET}"
 
 # Setting Time Zone. It will be updated to get a user location input
 sudo timedatectl set-timezone America/Bogota
-
-# Cleaning
-rm ~/install.sh
 
 # Settings finished
 zsh
