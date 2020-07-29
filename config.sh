@@ -166,7 +166,7 @@ sudo sed -i '/^ZSH_THEME=/cZSH_THEME="xiong-chiamiov-plus"' ~/.zshrc
 
 echo "${BLUE}Setting aliases${RESET}"
 echo "alias ins=\"sudo apt-get install\"" >> ~/.zshrc
-echo "alias gcc=\"gcc Wall -Werror -Wextra -pedantic\"" >> ~/.zshrc
+echo "alias gcc=\"gcc -Wall -Werror -Wextra -pedantic\"" >> ~/.zshrc
 echo "alias purge=\"sudo apt-get autoremove\"" >> ~/.zshrc
 echo "alias cl=\"clear\"" >> ~/.zshrc
 echo "alias update=\"sudo apt-get update\"" >> ~/.zshrc
